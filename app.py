@@ -12,7 +12,8 @@ Session(app)
 
 @app.route("/", methods=["GET", "POST"])
 def index():
-    # username = request.form.get("username")
-    # password = request.form.get("password")
-    # print(f"username: {username}, password: {password}")
+    if request.method == "POST":
+        username = request.form.get("username")
+        password = request.form.get("password")
+        print(f"username: {username}, password: {password}")
     return render_template("index.html")
