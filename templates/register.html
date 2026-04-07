@@ -13,7 +13,7 @@
 
 <body>
     <div class="login-container">
-        <h1>LOGIN</h1>
+        <h1>REGISTER</h1>
         <form action="/" method="post">
             <div class="input-group">
                 <label for="email">USERNAME</label>
@@ -25,10 +25,15 @@
                 <input name="password" type="password" id="password" placeholder="••••••••">
             </div>
 
-            <button type="submit">SIGN IN</button>
+            <div class="input-group">
+                <label for="confirmation">PASSWORD (again)</label>
+                <input name="password" type="password" id="password" placeholder="••••••••">
+            </div>
+
+            <button type="submit">SIGN UP</button>
 
             <div class="footer">
-                Don't have an account? <a href="/register">Sign up</a>
+                Already have an account? <a href="/">Sign in</a>
             </div>
         </form>
 
