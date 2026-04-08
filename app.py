@@ -1,6 +1,6 @@
 from flask import Flask, render_template, session, request
 from flask_session import Session
-from werkzeug.security import generate_password_hash
+from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
 
@@ -27,3 +27,8 @@ def register():
         password = request.form.get("password")
         print(f"username: {username}, password: {password}")
     return render_template("register.html")
+
+
+@app.route("/dashboard", methods=["GET", "POST"])
+def dashboard():
+    return render_template("dashboard.html")
