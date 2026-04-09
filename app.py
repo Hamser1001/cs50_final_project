@@ -22,10 +22,10 @@ def index():
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
-    if request.method == "POST":
-        username = request.form.get("username")
-        password = request.form.get("password")
-        print(f"username: {username}, password: {password}")
+    # if request.method == "POST":
+    #     username = request.form.get("username")
+    #     password = request.form.get("password")
+    #     print(f"username: {username}, password: {password}")
     return render_template("register.html")
 
 
@@ -37,3 +37,8 @@ def dashboard():
 @app.route("/login", methods=["GET", "POST"])
 def login():
     return render_template("login.html")
+
+
+@app.route("/layout", methods=["GET", "POST"])
+def layout():
+    return render_template("layout.html")
