@@ -32,3 +32,8 @@ def register():
 @app.route("/dashboard", methods=["GET", "POST"])
 def dashboard():
     return render_template("dashboard.html")
+
+
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    return render_template("login.html")
