@@ -1,4 +1,4 @@
-from flask import Flask, render_template, session, request
+from flask import Flask, render_template, session, request, redirect, url_for
 from flask_session import Session
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -17,15 +17,28 @@ def index():
         username = request.form.get("username")
         password = request.form.get("password")
         print(f"username: {username}, password: {password}")
+    else:
+        return redirect("/")
     return render_template("index.html")
 
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
-    # if request.method == "POST":
-    #     username = request.form.get("username")
-    #     password = request.form.get("password")
-    #     print(f"username: {username}, password: {password}")
+    if request.method == "POST":
+        username = request.form.get("username")
+        first_name = request.form.get("first_name")
+        last_name = request.form.get("last_name")
+        email = request.form.get("email")
+        password = request.form.get("password")
+        confirmation = request.form.get("password")
+        print(f"""
+            username = {username}
+            first_name = {first_name}
+            last_name = {last_name}
+            email = {email}
+            password = {password}
+            confirmation = {confirmation}
+        """)
     return render_template("register.html")
 
 
