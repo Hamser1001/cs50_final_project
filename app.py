@@ -1,6 +1,7 @@
 from flask import Flask, render_template, session, request, redirect, url_for
 from flask_session import Session
 from werkzeug.security import generate_password_hash, check_password_hash
+from user import Admin
 
 app = Flask(__name__)
 
@@ -31,14 +32,17 @@ def register():
         email = request.form.get("email")
         password = request.form.get("password")
         confirmation = request.form.get("password")
-        print(f"""
-            username = {username}
-            first_name = {first_name}
-            last_name = {last_name}
-            email = {email}
-            password = {password}
-            confirmation = {confirmation}
-        """)
+
+        user = Admin(username, first_name, last_name, email, password)
+        user.print_info()
+        # print(f"""
+        #     username = {username}
+        #     first_name = {first_name}
+        #     last_name = {last_name}
+        #     email = {email}
+        #     password = {password}
+        #     confirmation = {confirmation}
+        # """)
     return render_template("register.html")
 
 
