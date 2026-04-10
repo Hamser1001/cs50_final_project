@@ -1,7 +1,7 @@
 from flask import Flask, render_template, session, request, redirect, url_for
 from flask_session import Session
 from werkzeug.security import generate_password_hash, check_password_hash
-from user import Admin
+from user import User
 
 app = Flask(__name__)
 
@@ -33,7 +33,7 @@ def register():
         password = request.form.get("password")
         confirmation = request.form.get("password")
 
-        user = Admin(username, first_name, last_name, email, password)
+        user = User(username, first_name, last_name, email, password)
         user.print_info()
         # print(f"""
         #     username = {username}

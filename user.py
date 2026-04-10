@@ -1,4 +1,9 @@
-class Admin:
+from cs50 import SQL
+
+db = SQL("sqlite:///library.db")
+
+
+class User:
     def __init__(self, username, first_name, last_name, email, password):
         self.username = username
         self.first_name = first_name
@@ -16,5 +21,5 @@ class Admin:
         """)
 
 
-admin = Admin("username", "hamza", "serhani", "email@gmail.com", "hamzahamza")
+admin = User("username", "hamza", "serhani", "email@gmail.com", "hamzahamza")
 admin.print_info()
