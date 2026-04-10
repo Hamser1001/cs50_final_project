@@ -1002,8 +1002,10 @@ select.filter-select:focus {
 
 .modal-title {
     font-family: 'Playfair Display', serif;
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 600;
+    align-items: center;
+    color: #245c43;
 }
 
 .modal-close {
