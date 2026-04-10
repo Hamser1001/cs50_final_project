@@ -31,18 +31,16 @@ def register():
         last_name = request.form.get("last_name")
         email = request.form.get("email")
         password = request.form.get("password")
-        confirmation = request.form.get("password")
+        confirmation = request.form.get("confirmation")
+        hash_password = generate_password_hash(password)
 
-        user = User(username, first_name, last_name, email, password)
+        user = User(username, first_name, last_name, email, hash_password)
+        if username and password == confirmation:
+            print(bool(username))
+            user.insert_data()
+
         user.print_info()
-        # print(f"""
-        #     username = {username}
-        #     first_name = {first_name}
-        #     last_name = {last_name}
-        #     email = {email}
-        #     password = {password}
-        #     confirmation = {confirmation}
-        # """)
+
     return render_template("register.html")
 
 

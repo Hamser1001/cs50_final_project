@@ -1,6 +1,6 @@
 from cs50 import SQL
 
-db = SQL("sqlite:///library.db")
+db = SQL("sqlite:///database.db")
 
 
 class User:
@@ -19,6 +19,16 @@ class User:
             email = {self.email}
             password = {self.password}
         """)
+
+    def insert_data(self):
+        db.execute(
+            "INSERT INTO users (username, first_name, last_name, email, password) VALUES (?, ?, ?, ?, ?)",
+            self.username,
+            self.first_name,
+            self.last_name,
+            self.email,
+            self.password,
+        )
 
 
 admin = User("username", "hamza", "serhani", "email@gmail.com", "hamzahamza")
