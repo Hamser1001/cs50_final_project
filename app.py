@@ -54,6 +54,6 @@ def login():
     return render_template("login.html")
 
 
-@app.route("/layout", methods=["GET", "POST"])
-def layout():
-    return render_template("layout.html")
+# @app.route("/layout", methods=["GET", "POST"])
+# def layout():
+#     return render_template("layout.html")
