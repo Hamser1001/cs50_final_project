@@ -49,20 +49,59 @@ def register():
     return render_template("register.html")
 
 
-@app.route("/dashboard", methods=["GET", "POST"])
-def dashboard():
-    return render_template("dashboard.html")
-
-
 @app.route("/login", methods=["GET", "POST"])
 def login():
+    error = None
     if request.method == "POST":
         username = request.form.get("username")
         password = request.form.get("password")
-        print(username)
+
+        user_info = db.execute("SELECT * FROM users WHERE username = ?", username)
+
+        # check the user exists:
+        if len(user_info) != 1:
+            error = "Invalid username or password"
+            print(error)
+
+        user = user_info[0]
+
+        if not check_password_hash(user["password"], password):
+            error = "Invalid username or password"
+            print(error)
+
+        session["username"] = user["username"]
+        session["first_name"] = user["first_name"]
+        session["last_name"] = user["last_name"]
+
+        print(f"""
+            session["username"] = {user["username"]}
+            session["first_name"] = {user["first_name"]}
+            session["last_name"] = {user["last_name"]}
+        """)
+
+        return redirect("/dashboard")
     return render_template("login.html")
 
 
-@app.route("/layout", methods=["GET", "POST"])
+@app.route("/dashboard", methods=["GET", "POST"])
+def dashboard():
+    username = session["username"]
+    first_name = session["first_name"]
+    last_name = session["last_name"]
+    return render_template(
+        "dashboard.html", first_name=first_name, last_name=last_name, username=username
+    )
+
+
+# , first_name=first_name, last_name=last_name, username=username
+
+
+@app.route("/logout")
 def layout():
-    return render_template("layout.html")
+    session.clear()
+    return redirect("/login")
+
+
+# @app.route("/layout", methods=["GET", "POST"])
+# def layout():
+#     return render_template("layout.html")
