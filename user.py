@@ -30,6 +30,15 @@ class User:
             self.password,
         )
 
+    def check_user(self):
+        username = db.execute(
+            "SELECT username FROM users WHERE username = ?", self.username
+        )
+        print(f"checking the user: {username}")
+        if self.username == username:
+            return True
+        return False
+
 
 admin = User("username", "hamza", "serhani", "email@gmail.com", "hamzahamza")
 admin.print_info()

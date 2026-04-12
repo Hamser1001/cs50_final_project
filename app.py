@@ -1,9 +1,11 @@
 from flask import Flask, render_template, session, request, redirect, url_for
 from flask_session import Session
 from werkzeug.security import generate_password_hash, check_password_hash
-from user import User
+from cs50 import SQL
 
 app = Flask(__name__)
+# Database
+db = SQL("sqlite:///database.db")
 
 # Configure the session / use filesystem
 app.config["SESSION_PERMANANT"] = False
@@ -34,12 +36,15 @@ def register():
         confirmation = request.form.get("confirmation")
         hash_password = generate_password_hash(password)
 
-        user = User(username, first_name, last_name, email, hash_password)
         if username and password == confirmation:
-            print(bool(username))
-            user.insert_data()
-
-        user.print_info()
+            db.execute(
+                "INSERT INTO users (username, first_name, last_name, email, password) VALUES (?, ?, ?, ?, ?)",
+                username,
+                first_name,
+                last_name,
+                email,
+                hash_password,
+            )
 
     return render_template("register.html")
 
@@ -51,9 +56,13 @@ def dashboard():
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
+    if request.method == "POST":
+        username = request.form.get("username")
+        password = request.form.get("password")
+        print(username)
     return render_template("login.html")
 
 
-# @app.route("/layout", methods=["GET", "POST"])
-# def layout():
-#     return render_template("layout.html")
+@app.route("/layout", methods=["GET", "POST"])
+def layout():
+    return render_template("layout.html")
