@@ -202,6 +202,7 @@ body.sidebar-collapsed .logo-text {
     font-size: 13px;
     color: var(--muted);
     transition: var(--transition);
+    text-decoration: none;
 }
 
 .btn-logout:hover {
