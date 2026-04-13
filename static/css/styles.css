@@ -39,6 +39,23 @@ body {
     align-items: center;
 }
 
+.bodyBackground {
+    min-height: 100vh;
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.5), rgba(45, 106, 79, 0.5)),
+        url("/static/assets/background.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* background-color: red; */
+/* background-image: url("../static/assets/background.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat; */
+
+
 /* ─── Topbar ─────────────────────────────────────── */
 .topbar {
     position: fixed;

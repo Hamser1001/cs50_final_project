@@ -8,6 +8,7 @@ app = Flask(__name__)
 db = SQL("sqlite:///database.db")
 
 # Configure the session / use filesystem
+app.secret_key = "SECRET_KEY"
 app.config["SESSION_PERMANANT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 
