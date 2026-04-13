@@ -97,11 +97,11 @@ def dashboard():
 
 
 @app.route("/logout")
-def layout():
+def logout():
     session.clear()
     return redirect("/login")
 
 
-# @app.route("/layout", methods=["GET", "POST"])
-# def layout():
-#     return render_template("layout.html")
+@app.route("/layout", methods=["GET", "POST"])
+def layout():
+    return render_template("layout.html")

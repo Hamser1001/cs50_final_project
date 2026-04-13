@@ -192,7 +192,8 @@ body.sidebar-collapsed .logo-text {
     border: 2px solid var(--border);
 }
 
-.btn-logout {
+.btn-logout,
+.btn-user {
     display: flex;
     align-items: center;
     gap: 6px;
@@ -205,6 +206,7 @@ body.sidebar-collapsed .logo-text {
     font-size: 13px;
     color: var(--muted);
     transition: var(--transition);
+    text-decoration: none;
 }
 
 .btn-logout:hover {
@@ -213,7 +215,13 @@ body.sidebar-collapsed .logo-text {
     color: var(--coral);
 }
 
-.btn-logout svg {
+.btn-user:hover {
+    background: #e4ffb8;
+    border-color: #acfa95;
+}
+
+.btn-logout svg,
+.btn-user svg {
     width: 14px;
     height: 14px;
     stroke: currentColor;
@@ -1144,7 +1152,8 @@ select.filter-select:focus {
         grid-template-columns: 1fr 1fr;
     }
 
-    .btn-logout span {
+    .btn-logout span,
+    .btn-user span {
         display: none;
     }
 }
