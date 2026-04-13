@@ -94,7 +94,7 @@ def dashboard():
 @app.route("/logout")
 def logout():
     session.clear()
-    return redirect("/login")
+    return redirect("/")
 
 
 @app.route("/layout", methods=["GET", "POST"])
