@@ -27,17 +27,19 @@ def register():
         first_name = request.form.get("first_name")
         last_name = request.form.get("last_name")
         email = request.form.get("email")
+        phone = request.form.get("number_phone")
         password = request.form.get("password")
         confirmation = request.form.get("confirmation")
         hash_password = generate_password_hash(password)
 
         if username and password == confirmation:
             db.execute(
-                "INSERT INTO users (username, first_name, last_name, email, password) VALUES (?, ?, ?, ?, ?)",
+                "INSERT INTO admins (username, first_name, last_name, email, phone, password) VALUES (?, ?, ?, ?, ?, ?)",
                 username,
                 first_name,
                 last_name,
                 email,
+                phone,
                 hash_password,
             )
 
@@ -51,7 +53,7 @@ def login():
         username = request.form.get("username")
         password = request.form.get("password")
 
-        user_info = db.execute("SELECT * FROM users WHERE username = ?", username)
+        user_info = db.execute("SELECT * FROM admins WHERE username = ?", username)
 
         # check the user exists:
         if len(user_info) != 1:
