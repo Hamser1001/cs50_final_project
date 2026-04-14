@@ -20,8 +20,8 @@ def index():
     return render_template("index.html")
 
 
-@app.route("/register", methods=["GET", "POST"])
-def register():
+@app.route("/registeration", methods=["GET", "POST"])
+def registeration():
     if request.method == "POST":
 
         username = request.form.get("username")
@@ -35,21 +35,21 @@ def register():
         # Check the inputs
         if not username:
             flash("Insert the username")
-            return render_template("register.html")
+            return render_template("registeration.html")
 
         if not password:
             flash("Insert the password")
-            return render_template("register.html")
+            return render_template("registeration.html")
 
         if password != confirmation:
             flash("Password does not match")
-            return render_template("register.html")
+            return render_template("registeration.html")
 
         # Check existing username
         existing = db.execute("SELECT id FROM admins WHERE username = ?", username)
         if existing:
             # flash("The username already exists")
-            return render_template("register.html")
+            return render_template("registeration.html")
 
         # Insert into database
         hash_password = generate_password_hash(password)
@@ -66,22 +66,10 @@ def register():
             hash_password,
         )
 
-        db.execute(
-            """INSERT INTO admins
-               (username, first_name, last_name, email, phone, password)
-               VALUES (?, ?, ?, ?, ?, ?)""",
-            username,
-            first_name,
-            last_name,
-            email,
-            phone,
-            hash_password,
-        )
-
         flash("Registration successful!")
         return redirect("/login")
 
-    return render_template("register.html")
+    return render_template("registeration.html")
 
 
 @app.route("/login", methods=["GET", "POST"])
