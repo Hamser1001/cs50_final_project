@@ -1,45 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "layout.html" %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SchoolHub — Register</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css' )}}">
-</head>
+{% block title %}Log In{% endblock %}
 
-<body class="bodyBackground">
-    <main>
-        <form action="/login" method="post">
-            <div class="modal">
-                <div class="modal-header">
-                    <span class="modal-title" id="modalTitle">Log In</span>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label>Username</label>
-                        <input name="username" type="text" placeholder="username" required />
-                    </div>
-
-
-                    <div class="form-group">
-                        <label>Password</label>
-                        <input name="password" type="password" placeholder="********" required />
-                    </div>
-
-                    <div class="auth-footer">
-                        Create an account?
-                        <a href="/registeration">Sign up</a>
-                    </div>
-                </div>
-
-                <div class="modal-footer">
-                    <button class="btn btn-primary" type="submit">Log In</button>
-                </div>
+{% block body %}
+<form action="/login" method="post">
+    <div class="modal">
+        <div class="modal-header">
+            <span class="modal-title" id="modalTitle">Log In</span>
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+                <label>Username</label>
+                <input name="username" type="text" placeholder="username" required />
             </div>
-        </form>
-    </main>
 
-</body>
+            <div class="form-group">
+                <label>Password</label>
+                <input name="password" type="password" placeholder="********" required />
+            </div>
 
-</html>
+            <div class="auth-footer">
+                Create an account?
+                <a href="/registeration">Sign up</a>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="submit">Log In</button>
+        </div>
+    </div>
+</form>
+{% endblock %}
