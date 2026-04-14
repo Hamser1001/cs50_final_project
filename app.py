@@ -1,4 +1,4 @@
-from flask import Flask, render_template, session, request, redirect, url_for
+from flask import Flask, render_template, session, request, redirect, url_for, flash
 from flask_session import Session
 from werkzeug.security import generate_password_hash, check_password_hash
 from cs50 import SQL
@@ -23,6 +23,7 @@ def index():
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
+
         username = request.form.get("username")
         first_name = request.form.get("first_name")
         last_name = request.form.get("last_name")
@@ -30,18 +31,43 @@ def register():
         phone = request.form.get("number_phone")
         password = request.form.get("password")
         confirmation = request.form.get("confirmation")
+
+        # Check the inputs
+        if not username:
+            flash("Insert the username")
+            return render_template("register.html")
+
+        if not password:
+            flash("Insert the password")
+            return render_template("register.html")
+
+        if password != confirmation:
+            flash("Password does not match")
+            return render_template("register.html")
+
+        # Check existing username
+        existing = db.execute("SELECT id FROM admins WHERE username = ?", username)
+        if existing:
+            flash("The username already exists")
+            return render_template("register.html")
+
+        # Insert into database
         hash_password = generate_password_hash(password)
 
-        if username and password == confirmation:
-            db.execute(
-                "INSERT INTO admins (username, first_name, last_name, email, phone, password) VALUES (?, ?, ?, ?, ?, ?)",
-                username,
-                first_name,
-                last_name,
-                email,
-                phone,
-                hash_password,
-            )
+        db.execute(
+            """INSERT INTO admins
+               (username, first_name, last_name, email, phone, password)
+               VALUES (?, ?, ?, ?, ?, ?)""",
+            username,
+            first_name,
+            last_name,
+            email,
+            phone,
+            hash_password,
+        )
+
+        flash("Registration successful!")
+        return redirect("/login")
 
     return render_template("register.html")
 
