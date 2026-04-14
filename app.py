@@ -66,6 +66,18 @@ def register():
             hash_password,
         )
 
+        db.execute(
+            """INSERT INTO admins
+               (username, first_name, last_name, email, phone, password)
+               VALUES (?, ?, ?, ?, ?, ?)""",
+            username,
+            first_name,
+            last_name,
+            email,
+            phone,
+            hash_password,
+        )
+
         flash("Registration successful!")
         return redirect("/login")
 
