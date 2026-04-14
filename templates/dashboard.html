@@ -255,7 +255,7 @@
 
     <!-- ─── Modal ───────────────────────────────────── -->
     <!-- add Students Modal Form -->
-    <form action="" method="post">
+    <form action="/add_student" method="post">
         <div class="modal-overlay" id="modal">
             <div class="modal">
                 <div class="modal-header">
@@ -286,10 +286,9 @@
                         <div class="form-group">
                             <label>Class</label>
                             <select id="sClass">
+                                <option selected disabled>Select option</option>
                                 <option>10-A</option>
-                                <option>10-B</option>
-                                <option>9-C</option>
-                                <option>11-D</option>
+
                             </select>
                         </div>
                     </div>
@@ -297,10 +296,11 @@
                         <label>Email Address</label>
                         <input type="email" id="sEmail" placeholder="student@school.edu" />
                     </div>
+
                     <div class="form-row">
                         <div class="form-group">
-                            <label>GPA</label>
-                            <input type="number" id="sGpa" placeholder="3.5" step="0.1" min="0" max="4" />
+                            <label>Number Phone</label>
+                            <input type="phone" id="sGpa" placeholder="+212612345678" />
                         </div>
                         <div class="form-group">
                             <label>Status</label>

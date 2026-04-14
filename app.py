@@ -116,7 +116,11 @@ def dashboard():
     )
 
 
-# , first_name=first_name, last_name=last_name, username=username
+@app.route("/add_student", methods=["GET", "POST"])
+def add_student():
+    if request.method == "POST":
+        print("That's happend")
+    return redirect("/dashboard")
 
 
 @app.route("/logout")
