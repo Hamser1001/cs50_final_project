@@ -48,7 +48,7 @@ def register():
         # Check existing username
         existing = db.execute("SELECT id FROM admins WHERE username = ?", username)
         if existing:
-            flash("The username already exists")
+            # flash("The username already exists")
             return render_template("register.html")
 
         # Insert into database
