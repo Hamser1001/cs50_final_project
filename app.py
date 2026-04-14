@@ -120,6 +120,38 @@ def dashboard():
 def add_student():
     if request.method == "POST":
         print("That's happend")
+        first_name = request.form.get("first_name")
+        last_name = request.form.get("last_name")
+        age = request.form.get("age")
+        class_name = request.form.get("class")
+        email = request.form.get("email")
+        number_phone = request.form.get("number_phone")
+        status = request.form.get("status")
+
+        print(f"""
+            first_name: {first_name},
+            last_name: {last_name},
+            age: {age},
+            class_name: {class_name},
+            email: {email},
+            number_phone: {number_phone},
+            status: {status}
+        """)
+
+        db.execute(
+            """
+            INSERT INTO students (first_name, last_name, age, phone, email, class, status)
+            VALUES (?, ?, ?, ?, ?, ?, ?);
+            """,
+            first_name,
+            last_name,
+            age,
+            number_phone,
+            email,
+            class_name,
+            status,
+        )
+
     return redirect("/dashboard")
 
 
