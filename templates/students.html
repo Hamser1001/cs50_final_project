@@ -32,20 +32,21 @@
                 </thead>
                 <tbody id="studentsBody">
                     <!-- this is the design will use in jinja to render students from database -->
+                    {% for student in students%}
                     <tr>
                         <td>
                             <div class="avatar-name">
                                 <div class="name-badge" style="background:#4CAF50">S</div>
-                                Sara Mitchell
+                                {{student["first_name"]}} {{student["last_name"]}}
                             </div>
                         </td>
                         <td>15</td>
                         <td>
-                            <span class="class-pill a">10-A</span>
+                            <span class="class-pill a">{{student["class"]}}</span>
                         </td>
                         <td>3.5</td>
                         <td>
-                            <span class="class-pill a">Active</span>
+                            <span class="class-pill a">{{student["status"]}}</span>
                         </td>
                         <td>
                             <div class="actions">
@@ -67,9 +68,12 @@
                             </div>
                         </td>
                     </tr>
+                    {% endfor %}
                 </tbody>
             </table>
         </div>
     </div>
 </div>
+
+
 {% endblock %}

@@ -150,7 +150,11 @@ def add_student():
 
 @app.route("/students")
 def students():
-    return render_template("students.html")
+    students = db.execute("SELECT * FROM students")
+    # print(students)
+    for student in students:
+        print(student)
+    return render_template("students.html", students=students)
 
 
 @app.route("/classes")
