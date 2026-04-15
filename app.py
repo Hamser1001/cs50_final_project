@@ -161,6 +161,6 @@ def logout():
     return redirect("/")
 
 
-@app.route("/layout", methods=["GET", "POST"])
+@app.route("/layout1", methods=["GET", "POST"])
 def layout():
-    return render_template("dashboard.html")
+    return render_template("dashboard_layout.html")
