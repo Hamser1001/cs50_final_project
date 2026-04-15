@@ -163,4 +163,4 @@ def logout():
 
 @app.route("/layout", methods=["GET", "POST"])
 def layout():
-    return render_template("layout.html")
+    return render_template("dashboard.html")
