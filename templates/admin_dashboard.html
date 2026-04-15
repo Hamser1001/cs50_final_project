@@ -2,10 +2,10 @@
 
 {% block title %}Dashboard{% endblock %}
 {% block content %}
-<main class="main">
 
-    <!-- DASHBOARD PAGE -->
-    <div class="page active" id="page-dashboard">
+
+<!-- DASHBOARD PAGE -->
+<!-- <div class="page active" id="page-dashboard">
         <div class="page-header">
             <div>
                 <h1 class="page-title">Dashboard</h1>
@@ -51,39 +51,39 @@
         </div>
 
 
-    </div>
+    </div> -->
 
-    <!-- STUDENTS PAGE -->
-    <div class="page" id="page-students">
-        <div class="page-header">
-            <div>
-                <h1 class="page-title">Students</h1>
-                <p class="page-subtitle">Manage all enrolled students.</p>
-            </div>
-            <button class="btn btn-primary" onclick="openModal()">
-                <svg viewBox="0 0 24 24">
-                    <line x1="12" y1="5" x2="12" y2="19" />
-                    <line x1="5" y1="12" x2="19" y2="12" />
-                </svg>
-                Add Student
-            </button>
+<!-- STUDENTS PAGE -->
+<div class="page" id="page-students">
+    <div class="page-header">
+        <div>
+            <h1 class="page-title">Students</h1>
+            <p class="page-subtitle">Manage all enrolled students.</p>
         </div>
-        <div class="card" style="padding:0">
-            <div class="table-wrapper">
-                <table id="studentsTable">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Age</th>
-                            <th>Class</th>
-                            <th>GPA</th>
-                            <th>Status</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody id="studentsBody">
-                        <!-- this is the design will use in jinja to render students from database -->
-                        <!-- <tr>
+        <button class="btn btn-primary" onclick="openModal()">
+            <svg viewBox="0 0 24 24">
+                <line x1="12" y1="5" x2="12" y2="19" />
+                <line x1="5" y1="12" x2="19" y2="12" />
+            </svg>
+            Add Student
+        </button>
+    </div>
+    <div class="card" style="padding:0">
+        <div class="table-wrapper">
+            <table id="studentsTable">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Class</th>
+                        <th>GPA</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="studentsBody">
+                    <!-- this is the design will use in jinja to render students from database -->
+                    <!-- <tr>
                                 <td>
                                     <div class="avatar-name">
                                         <div class="name-badge" style="background:#4CAF50">S</div>
@@ -118,14 +118,14 @@
                                     </div>
                                 </td>
                             </tr> -->
-                    </tbody>
-                </table>
-            </div>
+                </tbody>
+            </table>
         </div>
     </div>
+</div>
 
-    <!-- CLASSES PAGE -->
-    <div class="page" id="page-classes">
+<!-- CLASSES PAGE -->
+<!-- <div class="page" id="page-classes">
         <div class="page-header">
             <div>
                 <h1 class="page-title">Classes</h1>
@@ -140,10 +140,10 @@
             </button>
         </div>
         <div class="classes-grid" id="classesGrid"></div>
-    </div>
+    </div> -->
 
-    <!-- GRADES PAGE -->
-    <div class="page" id="page-grades">
+<!-- GRADES PAGE -->
+<!-- <div class="page" id="page-grades">
         <div class="page-header">
             <div>
                 <h1 class="page-title">Grades</h1>
@@ -178,9 +178,8 @@
                 </table>
             </div>
         </div>
-    </div>
+    </div> -->
 
-</main>
 
 <!-- add Students Modal Form -->
 <form action="/add_student" method="post">

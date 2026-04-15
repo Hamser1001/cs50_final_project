@@ -162,6 +162,7 @@ function renderChart() {
 
 /* ── Navigation ─────────────────────────────────── */
 function navigate(e, id) {
+    console.log("Clicked:", id);
     e.preventDefault();
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));

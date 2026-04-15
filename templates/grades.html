@@ -1,9 +1,10 @@
 {% extends "dashboard_layout.html" %}
 
-{% block title %}Dashboard{% endblock %}
-{% block content %}
+{% block title %}Grades{% endblock %}
+
 <!-- ─── Main ────────────────────────────────────── -->
 <main class="main">
+    {% block content %}
     <!-- GRADES PAGE -->
     <div class="page" id="page-grades">
         <div class="page-header">
@@ -41,7 +42,7 @@
             </div>
         </div>
     </div>
-
+    {% endblock %}
 </main>
 
 <!-- add Students Modal Form -->
@@ -107,4 +108,3 @@
         </div>
     </div>
 </form>
-{% endblock %}

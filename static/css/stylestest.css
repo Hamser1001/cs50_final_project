@@ -1100,6 +1100,11 @@ select.filter-select:focus {
     pointer-events: none;
 }
 
+/* .main-content {
+    margin-left: 260px;
+    padding-top: 80px;
+} */
+
 .toast.show {
     opacity: 1;
     transform: translateY(0);

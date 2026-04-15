@@ -59,8 +59,8 @@
     <!-- ─── Sidebar ─────────────────────────────────── -->
     <aside class="sidebar">
         <span class="nav-section-label">Navigation</span>
-
-        <a class="nav-item active" href="#" onclick="navigate(event,'dashboard')">
+        <!-- onclick="navigate(event,'dashboard')" -->
+        <a class="nav-item active" href="/dashboard">
             <span class="nav-icon">
                 <svg viewBox="0 0 24 24">
                     <rect x="3" y="3" width="7" height="7" rx="1" />
@@ -71,8 +71,8 @@
             </span>
             <span class="nav-label">Dashboard</span>
         </a>
-
-        <a class="nav-item" href="#" onclick="navigate(event,'students')">
+        <!-- onclick="navigate(event,'students') -->
+        <a class="nav-item" href="/students">
             <span class="nav-icon">
                 <svg viewBox="0 0 24 24">
                     <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
@@ -82,8 +82,8 @@
             <span class="nav-label">Students</span>
             <span class="nav-badge">24</span>
         </a>
-
-        <a class="nav-item" href="#" onclick="navigate(event,'classes')">
+        <!-- onclick="navigate(event,'classes') -->
+        <a class="nav-item" href="/classes">
             <span class="nav-icon">
                 <svg viewBox="0 0 24 24">
                     <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
@@ -91,8 +91,8 @@
             </span>
             <span class="nav-label">Classes</span>
         </a>
-
-        <a class="nav-item" href="#" onclick="navigate(event,'grades')">
+        <!-- onclick="navigate(event,'grades') -->
+        <a class="nav-item" href="/grades">
             <span class="nav-icon">
                 <svg viewBox="0 0 24 24">
                     <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
@@ -113,7 +113,7 @@
     </aside>
 
     <!-- ─── Main Content (Dynamic Block) ───────────────── -->
-    <main class="main-content">
+    <main class="main">
         {% block content %}
         <!-- Page content goes here -->
         {% endblock %}

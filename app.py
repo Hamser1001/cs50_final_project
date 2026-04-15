@@ -112,7 +112,10 @@ def dashboard():
     first_name = session["first_name"]
     last_name = session["last_name"]
     return render_template(
-        "dashboard.html", first_name=first_name, last_name=last_name, username=username
+        "admin_dashboard.html",
+        first_name=first_name,
+        last_name=last_name,
+        username=username,
     )
 
 
@@ -127,16 +130,6 @@ def add_student():
         email = request.form.get("email")
         number_phone = request.form.get("number_phone")
         status = request.form.get("status")
-
-        print(f"""
-            first_name: {first_name},
-            last_name: {last_name},
-            age: {age},
-            class_name: {class_name},
-            email: {email},
-            number_phone: {number_phone},
-            status: {status}
-        """)
 
         db.execute(
             """
@@ -153,6 +146,21 @@ def add_student():
         )
 
     return redirect("/dashboard")
+
+
+@app.route("/students")
+def students():
+    return render_template("students.html")
+
+
+@app.route("/classes")
+def classes():
+    return render_template("classes.html")
+
+
+@app.route("/grades")
+def grades():
+    return render_template("grades.html")
 
 
 @app.route("/logout")
