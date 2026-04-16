@@ -111,6 +111,7 @@ def dashboard():
     username = session["username"]
     first_name = session["first_name"]
     last_name = session["last_name"]
+
     return render_template(
         "admin_dashboard.html",
         first_name=first_name,
@@ -152,9 +153,7 @@ def add_student():
 @app.route("/students")
 def students():
     students = db.execute("SELECT * FROM students")
-    # print(students)
-    for student in students:
-        print(student)
+
     return render_template("students.html", students=students)
 
 
