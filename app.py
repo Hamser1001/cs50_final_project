@@ -180,4 +180,13 @@ def layout():
 
 @app.route("/based")
 def based():
-    return render_template("dashboard.html")
+    username = session["username"]
+    first_name = session["first_name"]
+    last_name = session["last_name"]
+
+    return render_template(
+        "dashboard.html",
+        first_name=first_name,
+        last_name=last_name,
+        username=username,
+    )
