@@ -66,8 +66,8 @@
             </span>
             <span class="nav-label">Dashboard</span>
         </a>
-
-        <a class="nav-item" href="#" onclick="navigate(event,'students')">
+        <!-- onclick="navigate(event,'students')" -->
+        <a class="nav-item" href="/students">
             <span class="nav-icon">
                 <svg viewBox="0 0 24 24">
                     <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
@@ -103,7 +103,7 @@
             <div class="sidebar-user">
                 <div class="avatar">AD</div>
                 <div class="sidebar-user-info">
-                    <div class="sidebar-user-name">Admin User</div>
+                    <div class="sidebar-user-name">{{ first_name }} {{ last_name }}</div>
                     <div class="sidebar-user-role">School Manager</div>
                 </div>
             </div>
