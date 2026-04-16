@@ -112,11 +112,15 @@ def dashboard():
     first_name = session["first_name"]
     last_name = session["last_name"]
 
+    total_students = db.execute("SELECT COUNT(*) as total FROM students")
+    # print(total_students[0]["total"])
+
     return render_template(
         "admin_dashboard.html",
         first_name=first_name,
         last_name=last_name,
         username=username,
+        total_students=total_students[0]["total"],
     )
 
 
@@ -153,7 +157,6 @@ def add_student():
 @app.route("/students")
 def students():
     students = db.execute("SELECT * FROM students")
-
     return render_template("students.html", students=students)
 
 
@@ -176,17 +179,3 @@ def logout():
 @app.route("/layout1", methods=["GET", "POST"])
 def layout():
     return render_template("dashboard_layout.html")
-
-
-# @app.route("/based")
-# def based():
-#     username = session["username"]
-#     first_name = session["first_name"]
-#     last_name = session["last_name"]
-
-#     return render_template(
-#         "dashboard.html",
-#         first_name=first_name,
-#         last_name=last_name,
-#         username=username,
-#     )
