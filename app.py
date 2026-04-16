@@ -179,3 +179,8 @@ def logout():
 @app.route("/layout1", methods=["GET", "POST"])
 def layout():
     return render_template("dashboard_layout.html")
+
+
+@app.route("/org", methods=["GET", "POST"])
+def org():
+    return render_template("org.html")

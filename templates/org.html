@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SchoolHub — Manager</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:wght@600&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="static/css/styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+</head>
+
+<body>
+
+    <!-- ─── Topbar ──────────────────────────────────── -->
+    <header class="topbar">
+        <div class="topbar-left">
+            <div class="logo">
+                <div class="logo-mark">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 3L2 9v6c0 5.25 4.4 10.15 10 11.35C17.6 25.15 22 20.25 22 15V9L12 3z" />
+                    </svg>
+                </div>
+                <span class="logo-text">SchoolHub</span>
+            </div>
+        </div>
+        <div class="topbar-right">
+            <button class="hamburger" onclick="toggleSidebar()">
+                <span></span><span></span><span></span>
+            </button>
+            <div class="topbar-search">
+                <svg viewBox="0 0 24 24" stroke-width="2">
+                    <circle cx="11" cy="11" r="8" />
+                    <path d="m21 21-4.35-4.35" />
+                </svg>
+                <input type="text" placeholder="Search anything…" />
+            </div>
+            <div class="avatar" title="Admin">AD</div>
+            <button class="btn-logout" onclick="showToast('Logged out successfully')">
+                <svg viewBox="0 0 24 24" stroke-width="2">
+                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+                    <polyline points="16 17 21 12 16 7" />
+                    <line x1="21" y1="12" x2="9" y2="12" />
+                </svg>
+                <span>Logout</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- ─── Sidebar ─────────────────────────────────── -->
+    <aside class="sidebar">
+        <span class="nav-section-label">Navigation</span>
+
+        <a class="nav-item active" href="#" onclick="navigate(event,'dashboard')">
+            <span class="nav-icon">
+                <svg viewBox="0 0 24 24">
+                    <rect x="3" y="3" width="7" height="7" rx="1" />
+                    <rect x="14" y="3" width="7" height="7" rx="1" />
+                    <rect x="3" y="14" width="7" height="7" rx="1" />
+                    <rect x="14" y="14" width="7" height="7" rx="1" />
+                </svg>
+            </span>
+            <span class="nav-label">Dashboard</span>
+        </a>
+
+        <a class="nav-item" href="#" onclick="navigate(event,'students')">
+            <span class="nav-icon">
+                <svg viewBox="0 0 24 24">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                    <circle cx="9" cy="7" r="4" />
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                </svg>
+            </span>
+            <span class="nav-label">Students</span>
+            <span class="nav-badge">24</span>
+        </a>
+
+        <a class="nav-item" href="#" onclick="navigate(event,'classes')">
+            <span class="nav-icon">
+                <svg viewBox="0 0 24 24">
+                    <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+                    <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+                </svg>
+            </span>
+            <span class="nav-label">Classes</span>
+        </a>
+
+        <a class="nav-item" href="#" onclick="navigate(event,'grades')">
+            <span class="nav-icon">
+                <svg viewBox="0 0 24 24">
+                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+                </svg>
+            </span>
+            <span class="nav-label">Grades</span>
+        </a>
+
+        <div class="sidebar-footer">
+            <div class="sidebar-user">
+                <div class="avatar">AD</div>
+                <div class="sidebar-user-info">
+                    <div class="sidebar-user-name">Admin User</div>
+                    <div class="sidebar-user-role">School Manager</div>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- ─── Main ────────────────────────────────────── -->
+    <main class="main">
+
+        <!-- DASHBOARD PAGE -->
+        <div class="page active" id="page-dashboard">
+            <div class="page-header">
+                <div>
+                    <h1 class="page-title">Dashboard</h1>
+                    <p class="page-subtitle">Welcome back — here's what's happening today.</p>
+                </div>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon green">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                            <circle cx="9" cy="7" r="4" />
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                        </svg>
+                    </div>
+                    <div class="stat-value">248</div>
+                    <div class="stat-label">Total Students</div>
+                    <div class="stat-delta up">↑ 12 this term</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon amber">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+                            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+                        </svg>
+                    </div>
+                    <div class="stat-value">12</div>
+                    <div class="stat-label">Total Classes</div>
+                    <div class="stat-delta up">↑ 2 new</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon coral">
+                        <svg viewBox="0 0 24 24">
+                            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+                        </svg>
+                    </div>
+                    <div class="stat-value">78.4%</div>
+                    <div class="stat-label">Average Grade</div>
+                    <div class="stat-delta down">↓ 1.2% vs last</div>
+                </div>
+            </div>
+
+
+        </div>
+
+        <!-- STUDENTS PAGE -->
+        <div class="page" id="page-students">
+            <div class="page-header">
+                <div>
+                    <h1 class="page-title">Students</h1>
+                    <p class="page-subtitle">Manage all enrolled students.</p>
+                </div>
+                <button class="btn btn-primary" onclick="openModal()">
+                    <svg viewBox="0 0 24 24">
+                        <line x1="12" y1="5" x2="12" y2="19" />
+                        <line x1="5" y1="12" x2="19" y2="12" />
+                    </svg>
+                    Add Student
+                </button>
+            </div>
+            <div class="card" style="padding:0">
+                <div class="table-wrapper">
+                    <table id="studentsTable">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Age</th>
+                                <th>Class</th>
+                                <th>GPA</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="studentsBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- CLASSES PAGE -->
+        <div class="page" id="page-classes">
+            <div class="page-header">
+                <div>
+                    <h1 class="page-title">Classes</h1>
+                    <p class="page-subtitle">Overview of all active classes.</p>
+                </div>
+                <button class="btn btn-primary" onclick="showToast('New class form coming soon!')">
+                    <svg viewBox="0 0 24 24">
+                        <line x1="12" y1="5" x2="12" y2="19" />
+                        <line x1="5" y1="12" x2="19" y2="12" />
+                    </svg>
+                    New Class
+                </button>
+            </div>
+            <div class="classes-grid" id="classesGrid"></div>
+        </div>
+
+        <!-- GRADES PAGE -->
+        <div class="page" id="page-grades">
+            <div class="page-header">
+                <div>
+                    <h1 class="page-title">Grades</h1>
+                    <p class="page-subtitle">Student performance by subject.</p>
+                </div>
+            </div>
+            <div class="filter-bar">
+                <label>Filter by class:</label>
+                <select class="filter-select" id="gradeFilter" onchange="filterGrades()">
+                    <option value="all">All Classes</option>
+                    <option value="10-A">Class 10-A</option>
+                    <option value="10-B">Class 10-B</option>
+                    <option value="9-C">Class 9-C</option>
+                    <option value="11-D">Class 11-D</option>
+                </select>
+            </div>
+            <div class="card" style="padding:0">
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Student</th>
+                                <th>Class</th>
+                                <th>Math</th>
+                                <th>Science</th>
+                                <th>English</th>
+                                <th>History</th>
+                                <th>Overall</th>
+                            </tr>
+                        </thead>
+                        <tbody id="gradesBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- ─── Modal ───────────────────────────────────── -->
+    <div class="modal-overlay" id="modal">
+        <div class="modal">
+            <div class="modal-header">
+                <span class="modal-title" id="modalTitle">Add Student</span>
+                <button class="modal-close" onclick="closeModal()">
+                    <svg viewBox="0 0 24 24" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18" />
+                        <line x1="6" y1="6" x2="18" y2="18" />
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>First Name</label>
+                        <input type="text" id="fName" placeholder="e.g. Sara" />
+                    </div>
+                    <div class="form-group">
+                        <label>Last Name</label>
+                        <input type="text" id="lName" placeholder="e.g. Mitchell" />
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Age</label>
+                        <input type="number" id="sAge" placeholder="15" min="5" max="25" />
+                    </div>
+                    <div class="form-group">
+                        <label>Class</label>
+                        <select id="sClass">
+                            <option>10-A</option>
+                            <option>10-B</option>
+                            <option>9-C</option>
+                            <option>11-D</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" id="sEmail" placeholder="student@school.edu" />
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>GPA</label>
+                        <input type="number" id="sGpa" placeholder="3.5" step="0.1" min="0" max="4" />
+                    </div>
+                    <div class="form-group">
+                        <label>Status</label>
+                        <select id="sStatus">
+                            <option>Active</option>
+                            <option>Inactive</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal()">Cancel</button>
+                <button class="btn btn-primary" onclick="saveStudent()">Save Student</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ─── Toast ───────────────────────────────────── -->
+    <div class="toast" id="toast"></div>
+
+    <script src="static/js/main.js">
+
+    </script>
+</body>
+
+</html>

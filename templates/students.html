@@ -3,6 +3,7 @@
 {% block title %}Students{% endblock %}
 
 {% block content %}
+
 <div class="page active">
     <div class="page-header">
         <div>
@@ -75,5 +76,37 @@
     </div>
 </div>
 
-
+<!-- STUDENTS PAGE -->
+<div class="page" id="page-students">
+    <div class="page-header">
+        <div>
+            <h1 class="page-title">Students</h1>
+            <p class="page-subtitle">Manage all enrolled students.</p>
+        </div>
+        <button class="btn btn-primary" onclick="openModal()">
+            <svg viewBox="0 0 24 24">
+                <line x1="12" y1="5" x2="12" y2="19" />
+                <line x1="5" y1="12" x2="19" y2="12" />
+            </svg>
+            Add Student
+        </button>
+    </div>
+    <div class="card" style="padding:0">
+        <div class="table-wrapper">
+            <table id="studentsTable">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Class</th>
+                        <th>GPA</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="studentsBody"></tbody>
+            </table>
+        </div>
+    </div>
+</div>
 {% endblock %}

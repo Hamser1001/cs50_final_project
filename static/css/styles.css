@@ -34,27 +34,7 @@ body {
     line-height: 1.6;
     min-height: 100vh;
     overflow-x: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
-
-.bodyBackground {
-    min-height: 100vh;
-    background-image:
-        linear-gradient(rgba(0, 0, 0, 0.5), rgba(45, 106, 79, 0.5)),
-        url("/static/assets/background.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-}
-
-/* background-color: red; */
-/* background-image: url("../static/assets/background.jpg");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat; */
-
 
 /* ─── Topbar ─────────────────────────────────────── */
 .topbar {
@@ -209,8 +189,7 @@ body.sidebar-collapsed .logo-text {
     border: 2px solid var(--border);
 }
 
-.btn-logout,
-.btn-user {
+.btn-logout {
     display: flex;
     align-items: center;
     gap: 6px;
@@ -223,7 +202,6 @@ body.sidebar-collapsed .logo-text {
     font-size: 13px;
     color: var(--muted);
     transition: var(--transition);
-    text-decoration: none;
 }
 
 .btn-logout:hover {
@@ -232,13 +210,7 @@ body.sidebar-collapsed .logo-text {
     color: var(--coral);
 }
 
-.btn-user:hover {
-    background: #e4ffb8;
-    border-color: #acfa95;
-}
-
-.btn-logout svg,
-.btn-user svg {
+.btn-logout svg {
     width: 14px;
     height: 14px;
     stroke: currentColor;
@@ -1001,7 +973,6 @@ select.filter-select:focus {
     border-radius: var(--radius-lg);
     width: 100%;
     max-width: 460px;
-    /* min-width: 460px; */
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
     animation: slideUp 0.2s ease;
 }
@@ -1028,10 +999,8 @@ select.filter-select:focus {
 
 .modal-title {
     font-family: 'Playfair Display', serif;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 600;
-    align-items: center;
-    color: #245c43;
 }
 
 .modal-close {
@@ -1169,70 +1138,7 @@ select.filter-select:focus {
         grid-template-columns: 1fr 1fr;
     }
 
-    .btn-logout span,
-    .btn-user span {
+    .btn-logout span {
         display: none;
     }
-}
-
-/* test ------------------------- */
-/* ─── Auth Pages ─────────────────────────────── */
-.auth-wrapper {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--bg);
-    padding: 1.5rem;
-}
-
-.auth-card {
-    width: 100%;
-    max-width: 420px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow);
-    padding: 2rem;
-}
-
-.auth-header {
-    text-align: center;
-    margin-bottom: 1.5rem;
-}
-
-.auth-logo {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    margin-bottom: 1rem;
-}
-
-.auth-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 22px;
-    font-weight: 600;
-}
-
-.auth-subtitle {
-    font-size: 13px;
-    color: var(--muted);
-    margin-top: 6px;
-}
-
-.auth-footer {
-    margin-top: 1rem;
-    text-align: center;
-    font-size: 13px;
-    color: var(--muted);
-}
-
-.auth-footer a {
-    color: var(--accent);
-    text-decoration: none;
-}
-
-.auth-footer a:hover {
-    text-decoration: underline;
 }
