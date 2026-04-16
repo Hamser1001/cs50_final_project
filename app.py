@@ -178,15 +178,15 @@ def layout():
     return render_template("dashboard_layout.html")
 
 
-@app.route("/based")
-def based():
-    username = session["username"]
-    first_name = session["first_name"]
-    last_name = session["last_name"]
+# @app.route("/based")
+# def based():
+#     username = session["username"]
+#     first_name = session["first_name"]
+#     last_name = session["last_name"]
 
-    return render_template(
-        "dashboard.html",
-        first_name=first_name,
-        last_name=last_name,
-        username=username,
-    )
+#     return render_template(
+#         "dashboard.html",
+#         first_name=first_name,
+#         last_name=last_name,
+#         username=username,
+#     )
