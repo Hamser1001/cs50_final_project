@@ -151,7 +151,7 @@ def add_student():
             status,
         )
 
-    return redirect("/dashboard")
+    return redirect("/students")
 
 
 @app.route("/students")
