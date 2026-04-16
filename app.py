@@ -122,6 +122,7 @@ def dashboard():
 @app.route("/add_student", methods=["GET", "POST"])
 def add_student():
     if request.method == "POST":
+
         print("That's happend")
         first_name = request.form.get("first_name")
         last_name = request.form.get("last_name")
@@ -176,3 +177,8 @@ def logout():
 @app.route("/layout1", methods=["GET", "POST"])
 def layout():
     return render_template("dashboard_layout.html")
+
+
+@app.route("/based")
+def based():
+    return render_template("dashboard.html")
