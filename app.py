@@ -175,10 +175,13 @@ def org():
 # Context processor to make first and last name variables available on all pages
 @app.context_processor
 def inject_user():
+    total_students = db.execute("SELECT COUNT(*) as total FROM students")
+
     try:
         return {
             "first_name": session.get("first_name"),
-            "last_name": session.get("last_name")
+            "last_name": session.get("last_name"),
+            "total_students": total_students[0]["total"]
             }
     except ValueError:
         return redirect("/")
