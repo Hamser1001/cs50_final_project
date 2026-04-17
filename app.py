@@ -184,3 +184,15 @@ def layout():
 @app.route("/org", methods=["GET", "POST"])
 def org():
     return render_template("org.html")
+
+
+# Context processor to make first and last name variables available on all pages
+@app.context_processor
+def inject_user():
+    try:
+        return {
+            "first_name": session.get("first_name"),
+            "last_name": session.get("last_name")
+        }
+    except ValueError:
+        return redirect("/")
