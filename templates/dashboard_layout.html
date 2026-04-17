@@ -16,7 +16,7 @@
 
 <body>
 
-    <!-- ─── Topbar ──────────────────────────────────── -->
+    <!--  Topbar  -->
     <header class="topbar">
         <div class="topbar-left">
             <div class="logo">
@@ -51,7 +51,7 @@
         </div>
     </header>
 
-    <!-- ─── Sidebar ─────────────────────────────────── -->
+    <!-- Sidebar  -->
     <aside class="sidebar">
         <span class="nav-section-label">Navigation</span>
         <!-- onclick="navigate(event,'dashboard')" -->
@@ -110,14 +110,14 @@
         </div>
     </aside>
 
-    <!-- ─── Main Content (Dynamic Block) ───────────────── -->
+    <!--  Main Content (Dynamic Block)  -->
     <main class="main">
         {% block content %}
         <!-- Page content goes here -->
         {% endblock %}
     </main>
 
-    <!-- ─── Toast ───────────────────────────────────── -->
+    <!--  Toast  -->
     <div class="toast" id="toast"></div>
 
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
