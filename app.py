@@ -96,30 +96,16 @@ def login():
         session["first_name"] = user["first_name"]
         session["last_name"] = user["last_name"]
 
-        print(f"""
-            session["username"] = {user["username"]}
-            session["first_name"] = {user["first_name"]}
-            session["last_name"] = {user["last_name"]}
-        """)
-
         return redirect("/dashboard")
     return render_template("login.html")
 
 
 @app.route("/dashboard", methods=["GET", "POST"])
 def dashboard():
-    username = session["username"]
-    first_name = session["first_name"]
-    last_name = session["last_name"]
-
     total_students = db.execute("SELECT COUNT(*) as total FROM students")
-    # print(total_students[0]["total"])
 
     return render_template(
         "admin_dashboard.html",
-        first_name=first_name,
-        last_name=last_name,
-        username=username,
         total_students=total_students[0]["total"],
     )
 
@@ -193,6 +179,6 @@ def inject_user():
         return {
             "first_name": session.get("first_name"),
             "last_name": session.get("last_name")
-        }
+            }
     except ValueError:
         return redirect("/")

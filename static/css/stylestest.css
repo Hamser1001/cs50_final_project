@@ -73,6 +73,7 @@ body.sidebar-collapsed .topbar-left {
     gap: 8px;
     overflow: hidden;
     white-space: nowrap;
+    text-decoration: none;
 }
 
 .logo-mark {
@@ -963,7 +964,9 @@ select.filter-select:focus {
     align-items: center;
     justify-content: center;
     padding: 1rem;
+
 }
+
 
 .modal-overlay.open {
     display: flex;
