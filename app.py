@@ -181,7 +181,28 @@ def inject_user():
         return {
             "first_name": session.get("first_name"),
             "last_name": session.get("last_name"),
-            "total_students": total_students[0]["total"]
-            }
+            "total_students": total_students[0]["total"],
+        }
     except ValueError:
         return redirect("/")
+
+
+@app.route("/edit_student/<int:id>", methods=["POST"])
+def edit_student(id):
+    data = request.get_json()  
+    
+    first_name = data.get("first_name")
+    last_name = data.get("last_name")
+    age = data.get("age")
+    class_name = data.get("class")
+    email = data.get("email")
+    phone = data.get("number_phone")
+    status = data.get("status")
+
+    db.execute("""
+        UPDATE students 
+        SET first_name = ?, last_name = ?, age = ?, class = ?, email = ?, phone = ?, status = ?
+        WHERE id = ?
+    """, first_name, last_name, age, class_name, email, phone, status, id)
+
+    return {"success": True}

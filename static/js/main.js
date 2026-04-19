@@ -179,25 +179,109 @@ function toggleSidebar() {
     }
 }
 
+
 /* ── Modal ──────────────────────────────────────── */
-function openModal(idx) {
-    editIndex = (idx !== undefined) ? idx : null;
-    document.getElementById('modalTitle').textContent = editIndex !== null ? 'Edit Student' : 'Add Student';
-    if (editIndex !== null) {
-        const s = students[editIndex];
-        document.getElementById('fName').value = s.first;
-        document.getElementById('lName').value = s.last;
-        document.getElementById('sAge').value = s.age;
-        document.getElementById('sClass').value = s.cls;
-        document.getElementById('sEmail').value = s.email;
-        document.getElementById('sGpa').value = s.gpa;
-        document.getElementById('sStatus').value = s.status;
+
+let currentEditId = null;  // To store the ID of the student we want to edit
+
+function openModal(studentId) {
+    if (studentId !== undefined && studentId !== null) {
+        // Edit mode - we need to fetch student data from the server
+        currentEditId = studentId;
+        document.getElementById('modalTitle').textContent = 'Edit Student';
+
+        // Send a request to fetch this specific student's data
+        fetch(`/get_student/${studentId}`)
+            .then(response => response.json())
+            .then(student => {
+                document.getElementById('fName').value = student.first_name;
+                document.getElementById('lName').value = student.last_name;
+                document.getElementById('sAge').value = student.age;
+                document.getElementById('sClass').value = student.class;
+                document.getElementById('sEmail').value = student.email;
+                document.getElementById('sGpa').value = student.phone;  // phone
+                document.getElementById('sStatus').value = student.status;
+            })
+            .catch(error => console.error('Error:', error));
     } else {
-        ['fName', 'lName', 'sAge', 'sEmail', 'sGpa'].forEach(id => document.getElementById(id).value = '');
+        // Add mode
+        currentEditId = null;
+        document.getElementById('modalTitle').textContent = 'Add Student';
+        // Clear the fields
+        document.getElementById('fName').value = '';
+        document.getElementById('lName').value = '';
+        document.getElementById('sAge').value = '';
+        document.getElementById('sClass').value = '10-A';
+        document.getElementById('sEmail').value = '';
+        document.getElementById('sGpa').value = '';
         document.getElementById('sStatus').value = 'Active';
     }
+
     document.getElementById('modal').classList.add('open');
 }
+
+function closeModal() {
+    document.getElementById('modal').classList.remove('open');
+    currentEditId = null;
+}
+
+function saveStudent(event) {
+    // Prevent the default form submission
+    event.preventDefault();
+
+    const formData = {
+        first_name: document.getElementById('fName').value,
+        last_name: document.getElementById('lName').value,
+        age: document.getElementById('sAge').value,
+        class: document.getElementById('sClass').value,
+        email: document.getElementById('sEmail').value,
+        number_phone: document.getElementById('sGpa').value,
+        status: document.getElementById('sStatus').value
+    };
+
+    let url = '/add_student';
+    let method = 'POST';
+
+    if (currentEditId !== null) {
+        // Editing
+        url = `/edit_student/${currentEditId}`;
+        method = 'POST';
+    }
+
+    fetch(url, {
+        method: method,
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData)
+    })
+        .then(response => {
+            if (response.ok) {
+                closeModal();
+                window.location.reload();  // Reload the page to display updated data
+            }
+        })
+        .catch(error => console.error('Error:', error));
+}
+
+// function openModal(idx) {
+//     editIndex = (idx !== undefined) ? idx : null;
+//     document.getElementById('modalTitle').textContent = editIndex !== null ? 'Edit Student' : 'Add Student';
+//     if (editIndex !== null) {
+//         const s = students[editIndex];
+//         document.getElementById('fName').value = s.first;
+//         document.getElementById('lName').value = s.last;
+//         document.getElementById('sAge').value = s.age;
+//         document.getElementById('sClass').value = s.cls;
+//         document.getElementById('sEmail').value = s.email;
+//         document.getElementById('sGpa').value = s.gpa;
+//         document.getElementById('sStatus').value = s.status;
+//     } else {
+//         ['fName', 'lName', 'sAge', 'sEmail', 'sGpa'].forEach(id => document.getElementById(id).value = '');
+//         document.getElementById('sStatus').value = 'Active';
+//     }
+//     document.getElementById('modal').classList.add('open');
+// }
 
 function closeModal() {
     document.getElementById('modal').classList.remove('open');
