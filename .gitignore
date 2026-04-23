@@ -1,5 +1,7 @@
-*.db
-venv
-flask_session
-*.sql
 .gitignore
+*.db
+flask_session/
+venv/
+__pycache__/
+*.pyc
+.env
