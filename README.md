@@ -2,18 +2,8 @@
 
 #### Name: Hamza Serhani
 #### GitHub Username: Hamser1001
-#### edX Username: upscale_mind50
-#### City: Agadir
-#### Country: Morocco
-#### Date of Recording Video: 22/04/2026
 
 ---
-
-# SchoolHub
-#### Video Demo: https://youtu.be/hhyfxKQXy6s
-#### Description:
-
-SchoolHub is a web-based school management system built as my final project for CS50x. It is designed to help administrators manage the day-to-day academic records of a school — including students, classes, and grades — through a clean, easy-to-use interface. The application is built with Python and Flask on the backend, SQLite as the database, and HTML, CSS, and JavaScript on the frontend. Having grown up in Agadir, Morocco, I wanted to build something practical and meaningful: a system that a small school or tutoring center could realistically use to stay organized without needing expensive or complex software.
 
 ## What SchoolHub Does
 
