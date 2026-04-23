@@ -1,151 +1,102 @@
-{% extends "dashboard_layout.html" %}
+{% extends "layout.html" %}
 
 {% block title %}Students{% endblock %}
 
 {% block content %}
-
-<!-- STUDENTS PAGE -->
-<div class="page active" id="page-students">
-    <div class="page-header">
-        <div>
-            <h1 class="page-title">Students</h1>
-            <p class="page-subtitle">Manage all enrolled students.</p>
-        </div>
-        <button class="btn btn-primary" onclick="openModal()">
-            <svg viewBox="0 0 24 24">
-                <line x1="12" y1="5" x2="12" y2="19" />
-                <line x1="5" y1="12" x2="19" y2="12" />
-            </svg>
-            Add Student
-        </button>
+<div class="page-header">
+    <div>
+        <h1 class="page-title">Students</h1>
+        <p class="page-subtitle">Manage all student records</p>
     </div>
-    <div class="card" style="padding:0">
-        <div class="table-wrapper">
-            <table id="studentsTable">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Age</th>
-                        <th>Class</th>
-                        <th>GPA</th>
-                        <th>Status</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <!-- <tbody id="studentsBody"></tbody> -->
-                <tbody>
-
-                    {% for student in students%}
-                    <tr>
-                        <td>
-                            <div class="avatar-name">
-                                <div class="name-badge" style="background:#4CAF50">{{student["first_name"][0].upper()}}
-                                </div>
-                                {{student["first_name"]}} {{student["last_name"]}}
-                            </div>
-                        </td>
-                        <td>15</td>
-                        <td>
-                            <span class="class-pill a">{{student["class"]}}</span>
-                        </td>
-                        <td>3.5</td>
-                        <td>
-                            <span class="class-pill a">{{student["status"]}}</span>
-                        </td>
-                        <td>
-                            <div class="actions">
-                                <!-- onclick="openModal(0)" -->
-                                <button class="btn-icon edit" title="Edit">
-                                    <svg viewBox=" 0 0 24 24">
-                                        <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
-                                        <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
-                                    </svg>
-                                </button>
-
-                                <!-- onclick="deleteStudent(0)" -->
-                                <button class="btn-icon danger" title="Delete">
-                                    <svg viewBox="0 0 24 24">
-                                        <polyline points="3 6 5 6 21 6" />
-                                        <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6" />
-                                        <path d="M10 11v6" />
-                                        <path d="M14 11v6" />
-                                        <path d="M9 6V4h6v2" />
-                                    </svg>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                    {% endfor %}
-
-                </tbody>
-            </table>
-        </div>
-    </div>
+    <a href="/students/add" class="btn btn-primary">
+        <svg viewBox="0 0 24 24">
+            <line x1="12" y1="5" x2="12" y2="19" />
+            <line x1="5" y1="12" x2="19" y2="12" />
+        </svg>
+        Add Student
+    </a>
 </div>
 
+<!-- Filters -->
+<div class="filter-bar">
+    <form method="GET" action="/students" style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
+        <label>Filter by Class:</label>
+        <select name="class" class="filter-select" onchange="this.form.submit()">
+            <option value="all" {% if class_filter=='all' %}selected{% endif %}>All Classes</option>
+            {% for class in classes %}
+            <option value="{{ class.class }}" {% if class_filter==class.class %}selected{% endif %}>{{ class.class }}
+            </option>
+            {% endfor %}
+        </select>
 
-<!-- Modal -->
-<div class="modal-overlay" id="modal">
-    <form method="POST" action="/add_student">
-        <div class="modal">
-            <div class="modal-header">
-                <span class="modal-title" id="modalTitle">Add Student</span>
-                <button class="modal-close" onclick="closeModal()">
-                    <svg viewBox="0 0 24 24" stroke-width="2">
-                        <line x1="18" y1="6" x2="6" y2="18" />
-                        <line x1="6" y1="6" x2="18" y2="18" />
-                    </svg>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>First Name</label>
-                        <input type="text" name="first_name" id="fName" placeholder="e.g. Sara" required />
-                    </div>
-                    <div class="form-group">
-                        <label>Last Name</label>
-                        <input type="text" name="last_name" id="lName" placeholder="e.g. Mitchell" required />
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>Age</label>
-                        <input type="number" name="age" id="sAge" placeholder="15" min="5" max="25" required />
-                    </div>
-                    <div class="form-group">
-                        <label>Class</label>
-                        <select id="sClass" name="class" required>
-                            <option>10-A</option>
-                            <option>10-B</option>
-                            <option>9-C</option>
-                            <option>11-D</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label>Email Address</label>
-                    <input type="email" name="email" id="sEmail" placeholder="student@school.edu" required />
-                </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>Number Phone</label>
-                        <input name="number_phone" type="phone" id="sGpa" placeholder="+212651517878" required />
-                    </div>
-                    <div class="form-group">
-                        <label>Status</label>
-                        <select id="sStatus" name="status" required>
-                            <option>Active</option>
-                            <option>Inactive</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" onclick="closeModal()">Cancel</button>
-                <button type="submit" class="btn btn-primary" onclick="saveStudent()">Save Student</button>
-            </div>
+        <input type="text" name="q" placeholder="Search students..." value="{{ search }}"
+            class="filter-select topbar-search" style="min-width: 180px;">
+        <button type="submit" class="btn btn-secondary">Search</button>
+        {% if search %}
+        <a href="/students" class="btn btn-secondary">Clear</a>
+        {% endif %}
     </form>
 </div>
+
+<!-- Students Table -->
+<div class="table-wrapper">
+    <table>
+        <thead>
+            <tr>
+                <th>Student</th>
+                <th>Class</th>
+                <th>Age</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for student in students %}
+            <tr>
+                <td>
+                    <div class="avatar-name">
+                        <div class="name-badge" style="background: #2D6A4F;">
+                            {{ student.first_name[0] }}{{ student.last_name[0] }}
+                        </div>
+                        {{ student.first_name }} {{ student.last_name }}
+                    </div>
+                </td>
+                <td><span class="class-pill a">{{ student.class }}</span></td>
+                <td>{{ student.age or '—' }}</td>
+                <td>{{ student.email or '—' }}</td>
+                <td>{{ student.phone or '—' }}</td>
+                <td>
+                    <span class="class-pill {% if student.status == 'Active' %}a{% else %}c{% endif %}">
+                        {{ student.status }}
+                    </span>
+                </td>
+                <td class="actions">
+                    <a href="/students/{{ student.id }}/edit" class="btn-icon edit" title="Edit">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M17 3l4 4L7 21H3v-4L17 3z" />
+                            <path d="M15 5l4 4" />
+                        </svg>
+                    </a>
+                    <form method="POST" action="/students/{{ student.id }}/delete" style="display: inline;"
+                        onsubmit="return confirm('Delete this student?');">
+                        <button type="submit" class="btn-icon danger" title="Delete">
+                            <svg viewBox="0 0 24 24">
+                                <polyline points="3 6 5 6 21 6" />
+                                <path
+                                    d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+                            </svg>
+                        </button>
+                    </form>
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="7" style="text-align: center; padding: 40px;">No students found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </div>
 {% endblock %}

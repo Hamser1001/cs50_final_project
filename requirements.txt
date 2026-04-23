@@ -1,2 +1,4 @@
-flask
-flask_session
+Flask
+Flask-Session
+Werkzeug
+cs50

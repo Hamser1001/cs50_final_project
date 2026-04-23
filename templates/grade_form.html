@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+
+{% block title %}Edit Grades — {{ student.first_name }} {{ student.last_name }}{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <div>
+        <h1 class="page-title">Edit Grades</h1>
+        <p class="page-subtitle">{{ student.first_name }} {{ student.last_name }} — {{ student.class }}</p>
+    </div>
+</div>
+
+<div class="card" style="max-width: 650px;">
+    <form method="POST" id="gradeForm">
+        <div class="form-row">
+            <div class="form-group">
+                <label>Mathematics (0-100)</label>
+                <input type="number" name="math" id="math" value="{{ grade.math if grade else 0 }}" min="0" max="100"
+                    step="1" oninput="updateAverage()">
+            </div>
+            <div class="form-group">
+                <label>Science (0-100)</label>
+                <input type="number" name="science" id="science" value="{{ grade.science if grade else 0 }}" min="0"
+                    max="100" step="1" oninput="updateAverage()">
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label>English (0-100)</label>
+                <input type="number" name="english" id="english" value="{{ grade.english if grade else 0 }}" min="0"
+                    max="100" step="1" oninput="updateAverage()">
+            </div>
+            <div class="form-group">
+                <label>History (0-100)</label>
+                <input type="number" name="history" id="history" value="{{ grade.history if grade else 0 }}" min="0"
+                    max="100" step="1" oninput="updateAverage()">
+            </div>
+        </div>
+
+        <div class="grade-preview">
+            <strong>Overall Average:&nbsp;</strong>
+            <span id="averagePreview">0</span>%
+        </div>
+
+        <div style="display: flex; gap: 12px; margin-top: 24px;">
+            <button type="submit" class="btn btn-primary">Save Grades</button>
+            <a href="/grades" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
+</div>
+
+<script>
+    function updateAverage() {
+        const math = parseInt(document.getElementById('math').value) || 0;
+        const science = parseInt(document.getElementById('science').value) || 0;
+        const english = parseInt(document.getElementById('english').value) || 0;
+        const history = parseInt(document.getElementById('history').value) || 0;
+        const avg = (math + science + english + history) / 4;
+        document.getElementById('averagePreview').textContent = avg.toFixed(1);
+    }
+    updateAverage();
+</script>
+{% endblock %}
